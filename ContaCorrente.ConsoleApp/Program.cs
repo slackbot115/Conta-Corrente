@@ -14,7 +14,6 @@ namespace ContaCorrente.ConsoleApp
             conta1.numero = "10";
             conta1.limite = 0;
             conta1.statusEspecial = true;
-            conta1.movimentacaoBanco = new Movimentacao[10];
 
             conta1.RealizarSaque(200);
 
@@ -30,7 +29,6 @@ namespace ContaCorrente.ConsoleApp
             conta2.numero = "20";
             conta2.limite = 0;
             conta2.statusEspecial = true;
-            conta2.movimentacaoBanco = new Movimentacao[10];
 
             conta2.RealizarSaque(100);
             conta2.RealizarDeposito(500);
@@ -44,7 +42,6 @@ namespace ContaCorrente.ConsoleApp
 
             conta2.EmitirSaldo();
             conta2.ExibirExtrato();
-
         }
     }
 }

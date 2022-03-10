@@ -12,7 +12,7 @@ namespace ContaCorrente.ConsoleApp
         public double saldo;
         public bool statusEspecial;
         public double limite;
-        public Movimentacao[] movimentacaoBanco;
+        public Movimentacao[] movimentacaoBanco = new Movimentacao[10];
         public int indexMovimentacaoBanco = 0;
 
         public void RealizarSaque(double valor)
@@ -62,14 +62,16 @@ namespace ContaCorrente.ConsoleApp
             }
         }
 
-        public void RealizarTransferencia(ContaBancaria conta, double valor, ref int indexMovimentacaoReceptor)
+        public void RealizarTransferencia(ContaBancaria contaReceptora, double valor, ref int indexMovimentacaoReceptor)
         {
             saldo -= valor;
-            conta.saldo += valor;
-            //conta.movimentacaoBanco[indexMovimentacaoReceptor].valorMovimentado = valor;
-            //conta.movimentacaoBanco[indexMovimentacaoReceptor].tipoMovimento = TipoMovimentacao.Transferencia;
-            //conta.movimentacaoBanco[indexMovimentacaoReceptor].tipoOperacao = TipoMovimentacao.Recebido;
-            //indexMovimentacaoReceptor++;
+            contaReceptora.saldo += valor;
+            Movimentacao movimentacaoParaOutraConta = new Movimentacao();
+            movimentacaoParaOutraConta.valorMovimentado = valor;
+            movimentacaoParaOutraConta.tipoMovimento = TipoMovimentacao.Transferencia;
+            movimentacaoParaOutraConta.tipoOperacao = TipoMovimentacao.Recebido;
+            contaReceptora.movimentacaoBanco[indexMovimentacaoReceptor] = movimentacaoParaOutraConta;
+            indexMovimentacaoReceptor++;
 
             Movimentacao movimentacao = new Movimentacao();
             movimentacao.valorMovimentado = valor;
